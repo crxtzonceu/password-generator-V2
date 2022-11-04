@@ -8,26 +8,30 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Karla&display=swap" rel="stylesheet">
-    <title>Password-Generatorv2</title>
+    <title>Password-Generator-V2</title>
   </head>
 
   <body>
     <!-- main container -->
     <div class="container">
       <div class="top-section">
+
         <div class="top-left">
           <h1>Generate a <br><span class="green">random password</span></h1>
           <p class="main-p">Never use an insecure password again.</p>
+
           <!-- select password length -->
           <div class="length-container">
             <p><span class="purple">Password Length:</span></p>
-            <button onclick="addLength()">+</button>
+            <button id="add-btn">+</button>
             <span class="length" id="length">8</span>
-            <button onclick="minusLength()">-</button>
+            <button id="minus-btn">-</button>
           </div> <!-- / length-->
+
           <span class="warning" id="warning"></span>
-          <button class="generate" onclick="displayPass()">Generate Password</button>
+          <button class="generate" id="generate-btn">Generate Password</button>
         </div> <!-- / top-left -->
+
         <div class="top-right">
           <img src="https://static.vecteezy.com/system/resources/previews/000/223/944/non_2x/laptop-icon-illustration-on-unusual-background-vector.jpg">
         </div>
@@ -36,15 +40,15 @@
       <!-- lower-section -->
       <div class="hide">
         <div class="lower-section">
-          <div onclick="copy1()" id="pass-one"></div>
-          <div onclick="copy2()" id="pass-two"></div>
-          <div onclick="copy3()" id="pass-three"></div>
-          <div onclick="copy4()" id="pass-four"></div>
+          <div id="pass-one"></div>
+          <div id="pass-two"></div>
+          <div id="pass-three"></div>
+          <div id="pass-four"></div>
         </div> <!-- / lower-section -->
         
         <p class="center" id="copy-clipboard">Click password to copy</p>
       </div> <!-- / hide-->
     </div> <!-- / main container-->
-    <script src="code.js"></script>
+    <script src="code.js" type="module"></script>
   </body>
 </html>
