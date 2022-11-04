@@ -1,3 +1,4 @@
+import { char } from './charArray.js'
 const lengthEl = document.getElementById("length")
 const warningEl = document.getElementById("warning")
 const passOneEl = document.getElementById("pass-one")
@@ -6,20 +7,33 @@ const passThreeEl = document.getElementById("pass-three")
 const passFourEl = document.getElementById("pass-four")
 const hiddenEl = document.querySelector(".hide")
 const copyEl = document.getElementById("copy-clipboard")
-
-
-const char = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9","~","`","!","@","#","$","%","^","&","*","(",")","_","-","+","=","{","[","}","]",",","|",":",";","<",">",".","?",
-"/"];
-let hidden = true
+document.getElementById("add-btn").addEventListener('click', addLength)
+document.getElementById("minus-btn").addEventListener('click', minusLength)
+document.getElementById("generate-btn").addEventListener('click', renderPassword)
 let length = 8
 
-/* 
-Warning!! this code is bad and not dry
-i just wanted to do something from basic before moving on to next lesson 
-*/
+// Render on the DOM
+function renderPassword() {
+  passOneEl.textContent = getRandomChar()
+  passTwoEl.textContent = getRandomChar()
+  passThreeEl.textContent = getRandomChar()
+  passFourEl.textContent = getRandomChar()
+  // Make the hidden div visible after rendering first time
+  hiddenEl.style.visibility = "visible"
+  // Reset the text every generate button was clicked
+  copyEl.textContent = "Click password to copy"
+}
 
+// Return a random character from the characters array based on the length count
+function getRandomChar() {
+  let rng = ""
+  for(let i = 0; i < length;i++) {
+    rng += char[Math.floor(Math.random() * char.length)]
+  }
+  return rng
+}
 
-// Function
+// Functions and Event Listeners
 function minusLength() {
   if(length > 5) {
     length -= 1
@@ -38,38 +52,21 @@ function addLength() {
   }
 }
 
-function displayPass() {
-  passOneEl.textContent = getRandomChar()
-  passTwoEl.textContent = getRandomChar()
-  passThreeEl.textContent = getRandomChar()
-  passFourEl.textContent = getRandomChar()
-  if(hidden) {
-    hiddenEl.style.visibility = "visible"
-  }
-  copyEl.textContent = "Click password to copy"
-}
 
-function getRandomChar() {
-  let rng = ""
-  for(let i = 0; i < length;i++) {
-    rng += char[Math.floor(Math.random() * char.length)]
-  }
-  return rng
-}
-
-const copy1 = () => {
+// Copy to Clipboard features
+passOneEl.addEventListener('click', () => {
   navigator.clipboard.writeText(passOneEl.innerText)
   copyEl.textContent = "Copied!"
-}
-const copy2 = () => {
+})
+passTwoEl.addEventListener('click', () => {
   navigator.clipboard.writeText(passTwoEl.innerText)
   copyEl.textContent = "Copied!"
-}
-const copy3 = () => { 
+})
+passThreeEl.addEventListener('click', () => { 
   navigator.clipboard.writeText(passThreeEl.innerText)
   copyEl.textContent = "Copied!"
-}
-const copy4 = () => {
+})
+passFourEl.addEventListener('click', () => {
   navigator.clipboard.writeText(passFourEl.innerText)
   copyEl.textContent = "Copied!"
-}
+})
